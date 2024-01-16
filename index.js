@@ -15,7 +15,7 @@ port: 3306
 
 app.post("/save", (req, res) => {
 let data = [ req.body.id, req.body.name,req.body.salary ];
-let sql = "insert into Empdata values(?,?,?)";
+let sql = "insert into emp values(?,?,?)";
 con.query(sql, data, (err, result) =>{
 if (err) res.send(err);
 else     res.send(result);
@@ -28,7 +28,7 @@ else     res.send(result);
 
 
 app.get("/show", (req, res) => {
-let sql = "select * from Empdata";
+let sql = "select * from emp";
 con.query(sql, (err, result) => {
 if (err) res.send(err);
 
@@ -38,7 +38,7 @@ else    res.send(result);
 
 app.delete("/remove", (req, res) => {
 let data = [req.body.id];
-let sql = "delete from Empdata where id = ?";
+let sql = "delete from emp where id = ?";
 con.query(sql, data, (err, result) => {
 if (err) res.send(err);
 else     res.send(result);
@@ -55,7 +55,7 @@ app.put("/update/:id", (req, res) => {
   }
 
   let data = [name, salary, id];
-  let sql = "UPDATE Empdata SET name = ?, salary = ? WHERE id = ?";
+  let sql = "UPDATE emp SET name = ?, salary = ? WHERE id = ?";
   
   con.query(sql, data, (err, result) => {
     if (err) {
